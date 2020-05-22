@@ -7,7 +7,7 @@ services:
       network: host
     command: ["clojure", "-A:native-image"]
     volumes:
-    - .:/build
+    - .:/build:z
     network_mode: "host"
     stdin_open: true
     tty: true
