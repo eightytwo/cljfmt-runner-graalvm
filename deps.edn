@@ -1,0 +1,18 @@
+;; Clojure 1.9 is used due to the 'unbalanced monitors' error that
+;; results when running a GraalVM build on Clojure 1.10.
+{:deps    {org.clojure/clojure {:mvn/version "1.9.0"}
+           com.jameslaverack/cljfmt-runner
+           {:git/url "https://github.com/JamesLaverack/cljfmt-runner"
+            :sha     "6383fbb0bd22a21c0edf5b699425504d9f0a958a"}
+           clj.native-image
+           {:git/url "https://github.com/taylorwood/clj.native-image.git"
+            :sha "7708e7fd4572459c81f6a6b8e44c96f41cdd92d4"}}
+ :aliases {:native-image
+           {:main-opts ["-m clj.native-image core"
+                        "--initialize-at-build-time"
+                        "--no-fallback"
+                        "--report-unsupported-elements-at-runtime"
+                        "-H:+ReportExceptionStackTraces"
+                        "-H:Name=cljfmt"
+                        "-H:ReflectionConfigurationFiles=graal_reflection.json"]
+            :jvm-opts ["-Dclojure.compiler.direct-linking=true"]}}}
