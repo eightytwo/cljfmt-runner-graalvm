@@ -6,9 +6,14 @@ A pre-built binary for [cljfmt-runner](https://github.com/JamesLaverack/cljfmt-r
 
 1. Download the [latest binary](https://github.com/eightytwo/cljfmt-runner-graalvm/releases/latest) from the releases page.
 
-2. Move the downloaded binary to a directory that's on your path, e.g. `~/.local/bin`.
+2. Make the binary executable.
+    ```shell script
+    $ chmod +x cljfmt
+    ```
 
-3. Check the formatting of some Clojure code.
+3. Move the downloaded binary to a directory that's on your path, e.g. `~/.local/bin`.
+
+4. Check the formatting of some Clojure code.
     ```shell script
     $ pwd
     ~/projects/hello
@@ -27,7 +32,7 @@ A pre-built binary for [cljfmt-runner](https://github.com/JamesLaverack/cljfmt-r
        ([text] (println (say-hello text))))
     ```
 
-4. Fix the formatting errors.
+5. Fix the formatting errors.
     ```shell script
     $ cljfmt --fix
     Checked 6 file(s)
@@ -41,7 +46,7 @@ $ cljfmt --check -- -d dev
 
 ## What's This About?
 
-There's a lot of nice Clojure tooling for developers, such as [`cljfmt`](https://github.com/weavejester/cljfmt), which formats Clojure code idiomatically. These tools are typically run via [`clj`](https://clojure.org/guides/deps_and_cli) (or [`lein`](https://github.com/technomancy/leiningen)) and can therefore take seconds to complete. This is because the Clojure code needs to be compiled to Java bytecode which is then executed in a Java virtual machine.
+There's a lot of nice Clojure tooling for developers, such as [`cljfmt`](https://github.com/weavejester/cljfmt), which formats Clojure code idiomatically. These tools are typically run via [`clj`](https://clojure.org/guides/deps_and_cli) (or [`lein`](https://leiningen.org)) and can therefore take seconds to complete. This is because the Clojure code needs to be compiled to Java bytecode which is then executed in a Java virtual machine.
 
 This isn't a huge problem if you are only running `cljfmt` once or twice. However, if you are going to run `cljfmt` frequently, such as in a [pre-commit](https://pre-commit.com/) hook, then execution time becomes really important.
 
@@ -49,7 +54,7 @@ This isn't a huge problem if you are only running `cljfmt` once or twice. Howeve
 
 This project uses the following to create native binaries:
 * [clj.native-image](https://github.com/taylorwood/clj.native-image) - a Clojure program for building GraalVM native images using Clojure Deps and CLI tools.
-* [oracle/graalvm-ce](https://hub.docker.com/r/oracle/graalvm-ce) - A Docker image with GraalVM installed.
+* [oracle/graalvm-ce](https://hub.docker.com/r/oracle/graalvm-ce) - a Docker image with GraalVM installed.
 
 1. Clone this repository.
     ```shell script
